@@ -18,7 +18,7 @@
 
 	<groupId>com.github.rakhmedovrs</groupId>
 	<artifactId>my-pet-clinic</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.1.SNAPSHOT</version>
 	<name>my-pet-clinic</name>
 	<description>My pet clinic project</description>
 
@@ -46,7 +46,6 @@
 
 	<scm>
 		<developerConnection>scm:git:git@github.com:RakhmedovRS/my-pet-clinic.git</developerConnection>
-		<tag>0.0.2</tag>
 	</scm>
 
 </project>
