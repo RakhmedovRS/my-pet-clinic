@@ -6,11 +6,13 @@ import java.util.Set;
  * @author RakhmedovRS
  * @created 04-May-20
  */
-public interface BaseService<Entry>
+public interface CRUDService<T, ID>
 {
-	Entry findById(Long id);
+	T findById(ID id);
 
-	Entry save(Entry entry);
+	T save(T entity);
 
-	Set<Entry> findAll();
+	Set<T> findAll();
+
+	void delete(T entity);
 }

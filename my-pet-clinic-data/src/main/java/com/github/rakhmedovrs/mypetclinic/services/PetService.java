@@ -6,6 +6,6 @@ import com.github.rakhmedovrs.mypetclinic.model.Pet;
  * @author RakhmedovRS
  * @created 04-May-20
  */
-public interface PetService extends BaseService<Pet>
+public interface PetService extends CRUDService<Pet, Long>
 {
 }
