@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @created 07-May-20
  */
 @Controller
+@RequestMapping("/")
 public class IndexController
 {
-	@RequestMapping(path = {"", "/", "index.html"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"", "index.html"}, method = RequestMethod.GET)
 	public String index()
 		{
 		return "index";

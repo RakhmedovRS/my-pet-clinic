@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @created 07-May-20
  */
 @Controller
-@RequestMapping("/vets")
-public class VetController
+@RequestMapping("/owners")
+public class OwnerController
 {
 	@RequestMapping(path = {"", "/", "/index", "/index.html"}, method = RequestMethod.GET)
-	public String listVets()
+	public String listOwners()
 	{
-		return "vets/index";
+		return "owners/index";
 	}
 }
