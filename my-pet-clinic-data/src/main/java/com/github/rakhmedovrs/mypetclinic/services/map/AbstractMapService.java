@@ -1,17 +1,17 @@
 package com.github.rakhmedovrs.mypetclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.github.rakhmedovrs.mypetclinic.model.BaseEntity;
+
+import java.util.*;
 
 /**
  * @author RakhmedovRS
  * @created 06-May-20
  */
-public abstract class AbstractMapService<T, ID>
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long>
 {
-	protected Map<ID, T> map = new HashMap<>();
+	protected Map<Long, T> map = new HashMap<>();
+	protected Long id = 1L;
 
 	Set<T> findAll()
 	{
@@ -23,9 +23,18 @@ public abstract class AbstractMapService<T, ID>
 		return map.get(id);
 	}
 
-	T save(ID id, T entity)
+	T save(T entity)
 	{
-		return map.put(id, entity);
+		if (entity != null && entity.getId() == null)
+		{
+			entity.setId(getNextId());
+			map.put(entity.getId(), entity);
+		}
+		else
+		{
+			throw new RuntimeException("entity is null");
+		}
+		return entity;
 	}
 
 	void deleteById(ID id)
@@ -36,5 +45,10 @@ public abstract class AbstractMapService<T, ID>
 	void delete(T entity)
 	{
 		map.entrySet().removeIf(entry -> entry.getValue().equals(entity));
+	}
+
+	private Long getNextId()
+	{
+		return id++;
 	}
 }
