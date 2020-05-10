@@ -1,7 +1,7 @@
 package com.github.rakhmedovrs.mypetclinic.services.map;
 
 import com.github.rakhmedovrs.mypetclinic.model.Pet;
-import com.github.rakhmedovrs.mypetclinic.services.CRUDService;
+import com.github.rakhmedovrs.mypetclinic.services.PetService;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import java.util.Set;
  * @author RakhmedovRS
  * @created 06-May-20
  */
-public class PetMapService extends AbstractMapService<Pet, Long> implements CRUDService<Pet, Long>
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetService
 {
 	@Override
 	public Pet findById(Long id)

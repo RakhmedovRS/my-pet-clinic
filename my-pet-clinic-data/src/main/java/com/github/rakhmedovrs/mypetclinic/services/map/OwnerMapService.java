@@ -1,7 +1,7 @@
 package com.github.rakhmedovrs.mypetclinic.services.map;
 
 import com.github.rakhmedovrs.mypetclinic.model.Owner;
-import com.github.rakhmedovrs.mypetclinic.services.CRUDService;
+import com.github.rakhmedovrs.mypetclinic.services.OwnerService;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import java.util.Set;
  * @author RakhmedovRS
  * @created 06-May-20
  */
-public class OwnerMapService extends AbstractMapService<Owner, Long> implements CRUDService<Owner, Long>
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService
 {
 	@Override
 	public Owner findById(Long id)
@@ -33,5 +33,11 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 	public void delete(Owner owner)
 	{
 		super.delete(owner);
+	}
+
+	@Override
+	public Owner findByLastName(String lastName)
+	{
+		return null;
 	}
 }
