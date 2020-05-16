@@ -15,4 +15,6 @@ public interface CRUDService<T, ID>
 	Set<T> findAll();
 
 	void delete(T entity);
+
+	void deleteById(ID id);
 }
