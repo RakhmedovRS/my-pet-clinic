@@ -1,5 +1,6 @@
 package com.github.rakhmedovrs.mypetclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,6 +10,16 @@ import java.util.Set;
 public class Vet extends Person
 {
 	private Set<Speciality> specialities;
+
+	public Vet()
+	{
+		specialities = new HashSet<>();
+	}
+
+	public Vet(String firstName, String lastName)
+	{
+		super(firstName, lastName);
+	}
 
 	public Set<Speciality> getSpecialities()
 	{

@@ -1,6 +1,7 @@
 package com.github.rakhmedovrs.mypetclinic.bootstrap;
 
 import com.github.rakhmedovrs.mypetclinic.model.Owner;
+import com.github.rakhmedovrs.mypetclinic.model.Pet;
 import com.github.rakhmedovrs.mypetclinic.model.PetType;
 import com.github.rakhmedovrs.mypetclinic.model.Vet;
 import com.github.rakhmedovrs.mypetclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import com.github.rakhmedovrs.mypetclinic.services.PetTypeService;
 import com.github.rakhmedovrs.mypetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 /**
  * @author RakhmedovRS
@@ -30,20 +33,25 @@ public class DataLoader implements CommandLineRunner
 	@Override
 	public void run(String... args)
 	{
-		PetType dogs = petTypeService.save(new PetType("Dog"));
-		PetType cats = petTypeService.save(new PetType("Cat"));
+		PetType dog = petTypeService.save(new PetType("Dog"));
+		PetType cat = petTypeService.save(new PetType("Cat"));
+		System.out.println("PetTypes are loaded");
 
-		Owner owner1 = new Owner();
-		owner1.setFirstName("Ivan");
-		owner1.setLastName("Ivanov");
-		ownerService.save(owner1);
+		Owner ivan = ownerService.save(
+			new Owner("Ivan", "Ivanov", "ul. Lenina d.1", "Moscow", "111111111")
+		);
 
-		Owner owner2 = new Owner();
-		owner2.setFirstName("Petr");
-		owner2.setLastName("Petrov");
-		ownerService.save(owner2);
+		Owner petr = ownerService.save(
+			new Owner("Petr", "Petrov", "ul. Lenina d.2", "Moscow", "222222222")
+		);
 
 		System.out.println("Owners are loaded");
+
+		Pet ivanDog = new Pet("Muhtar", dog, ivan, LocalDate.now().minusYears(1));
+		ivan.getPets().add(ivanDog);
+
+		Pet petrCat = new Pet("Myau", cat, petr, LocalDate.now().minusYears(2));
+		petr.getPets().add(petrCat);
 
 		Vet vet1 = new Vet();
 		vet1.setFirstName("Kozel");
