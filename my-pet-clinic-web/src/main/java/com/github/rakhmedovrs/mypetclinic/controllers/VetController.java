@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @created 07-May-20
  */
 @Controller
-@RequestMapping("/vets")
 public class VetController
 {
 	private final VetService vetService;
@@ -21,7 +20,7 @@ public class VetController
 		this.vetService = vetService;
 	}
 
-	@RequestMapping(path = {"", "/", "/index", "/index.html"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"/vets", "/vets/index", "/vets/index.html", "/vets.html"}, method = RequestMethod.GET)
 	public String listVets(Model model)
 	{
 		model.addAttribute("vets", vetService.findAll());

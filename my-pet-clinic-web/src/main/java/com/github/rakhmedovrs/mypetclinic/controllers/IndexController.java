@@ -17,4 +17,10 @@ public class IndexController
 		{
 		return "index";
 	}
+
+	@RequestMapping(path = "/oups" , method = RequestMethod.GET)
+	public String oupsHandler()
+	{
+		return "nonimplemented";
+	}
 }
