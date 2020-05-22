@@ -1,16 +1,28 @@
 package com.github.rakhmedovrs.mypetclinic.model;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
 /**
  * @author RakhmedovRS
  * @created 03-May-20
  */
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity
 {
+	@Column(name = "name")
 	private String name;
+
+	@ManyToOne(targetEntity = PetType.class)
+	@JoinColumn(name = "type_id")
 	private PetType petType;
+
+	@ManyToOne(targetEntity = Owner.class)
+	@JoinColumn(name = "owner_id")
 	private Owner owner;
+
+	@Column(name = "birth_date")
 	private LocalDate birthDate;
 
 	public Pet()
