@@ -1,11 +1,18 @@
 package com.github.rakhmedovrs.mypetclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author RakhmedovRS
  * @created 16-May-20
  */
+@Entity
+@Table(name = "specialities")
 public class Speciality extends BaseEntity
 {
+	@Column(name = "description")
 	private String description;
 
 	public Speciality()
