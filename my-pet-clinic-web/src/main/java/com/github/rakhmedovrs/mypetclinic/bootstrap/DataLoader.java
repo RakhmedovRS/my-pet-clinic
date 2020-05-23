@@ -49,23 +49,24 @@ public class DataLoader implements CommandLineRunner
 		Speciality dentistry = specialitiesService.save(new Speciality("Dentistry"));
 		System.out.println("Specialities are added");
 
-		Owner ivan = ownerService.save(
-			new Owner("Ivan", "Ivanov", "ul. Lenina d.1", "Moscow", "111111111")
-		);
-
-		Owner petr = ownerService.save(
-			new Owner("Petr", "Petrov", "ul. Lenina d.2", "Moscow", "222222222")
-		);
-
-		System.out.println("Owners are loaded");
+		Owner ivan = new Owner("Ivan", "Ivanov", "ul. Lenina d.1", "Moscow", "111111111");
 
 		Pet ivanDog = new Pet("Muhtar", dog, ivan, LocalDate.now().minusYears(1));
 		ivan.getPets().add(ivanDog);
+
 		ownerService.save(ivan);
+
+		Owner petr = new Owner("Petr", "Petrov", "ul. Lenina d.2", "Moscow", "222222222");
 
 		Pet petrCat = new Pet("Myau", cat, petr, LocalDate.now().minusYears(2));
 		petr.getPets().add(petrCat);
+
 		ownerService.save(petr);
+
+		Visit catVisit = new Visit("Sneezy Kitty", petrCat);
+		visitService.save(catVisit);
+
+		System.out.println("Owners are loaded");
 
 		Vet vet1 = new Vet("Kozel", "Kozlov");
 		vet1.getSpecialities().add(radiology);
@@ -76,9 +77,5 @@ public class DataLoader implements CommandLineRunner
 		vet2.getSpecialities().add(dentistry);
 		vetService.save(vet2);
 		System.out.println("Vets are loaded");
-
-		Visit catVisit = new Visit("Sneezy Kitty", petrCat);
-		visitService.save(catVisit);
-		System.out.println("Visits are loaded");
 	}
 }
