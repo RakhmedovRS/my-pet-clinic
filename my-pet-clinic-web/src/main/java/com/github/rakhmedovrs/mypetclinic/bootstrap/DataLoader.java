@@ -1,10 +1,7 @@
 package com.github.rakhmedovrs.mypetclinic.bootstrap;
 
 import com.github.rakhmedovrs.mypetclinic.model.*;
-import com.github.rakhmedovrs.mypetclinic.services.OwnerService;
-import com.github.rakhmedovrs.mypetclinic.services.PetTypeService;
-import com.github.rakhmedovrs.mypetclinic.services.SpecialitiesService;
-import com.github.rakhmedovrs.mypetclinic.services.VetService;
+import com.github.rakhmedovrs.mypetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,16 +18,15 @@ public class DataLoader implements CommandLineRunner
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialitiesService specialitiesService;
+	private final VisitService visitService;
 
-	public DataLoader(OwnerService ownerService,
-	                  VetService vetService,
-	                  PetTypeService petTypeService,
-	                  SpecialitiesService specialitiesService)
+	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialitiesService specialitiesService, VisitService visitService)
 	{
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialitiesService = specialitiesService;
+		this.visitService = visitService;
 	}
 
 	@Override
@@ -65,9 +61,11 @@ public class DataLoader implements CommandLineRunner
 
 		Pet ivanDog = new Pet("Muhtar", dog, ivan, LocalDate.now().minusYears(1));
 		ivan.getPets().add(ivanDog);
+		ownerService.save(ivan);
 
 		Pet petrCat = new Pet("Myau", cat, petr, LocalDate.now().minusYears(2));
 		petr.getPets().add(petrCat);
+		ownerService.save(petr);
 
 		Vet vet1 = new Vet("Kozel", "Kozlov");
 		vet1.getSpecialities().add(radiology);
@@ -78,5 +76,9 @@ public class DataLoader implements CommandLineRunner
 		vet2.getSpecialities().add(dentistry);
 		vetService.save(vet2);
 		System.out.println("Vets are loaded");
+
+		Visit catVisit = new Visit("Sneezy Kitty", petrCat);
+		visitService.save(catVisit);
+		System.out.println("Visits are loaded");
 	}
 }

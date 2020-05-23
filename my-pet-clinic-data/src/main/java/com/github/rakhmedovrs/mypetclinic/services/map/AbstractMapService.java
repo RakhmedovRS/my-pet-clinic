@@ -25,9 +25,13 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long>
 
 	T save(T entity)
 	{
-		if (entity != null && entity.getId() == null)
+		if (entity != null)
 		{
-			entity.setId(getNextId());
+			if (entity.getId() == null)
+			{
+				entity.setId(getNextId());
+			}
+
 			map.put(entity.getId(), entity);
 		}
 		else

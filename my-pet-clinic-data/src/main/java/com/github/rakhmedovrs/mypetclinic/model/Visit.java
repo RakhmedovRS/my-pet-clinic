@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Visit extends BaseEntity
 {
 	@Column(name = "date")
-	private LocalDate date;
+	private LocalDate date = LocalDate.now();
 
 	@Column(name = "description")
 	private String description;
@@ -23,7 +23,12 @@ public class Visit extends BaseEntity
 
 	public Visit()
 	{
-		date = LocalDate.now();
+	}
+
+	public Visit(String description, Pet pet)
+	{
+		this.description = description;
+		this.pet = pet;
 	}
 
 	public LocalDate getDate()
