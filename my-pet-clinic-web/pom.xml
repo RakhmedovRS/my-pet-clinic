@@ -21,6 +21,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<artifactId>my-pet-clinic-data</artifactId>
 			<groupId>com.github.rakhmedovrs</groupId>
 			<version>0.0.2-SNAPSHOT</version>
