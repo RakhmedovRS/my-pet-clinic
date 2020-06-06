@@ -3,8 +3,10 @@ package com.github.rakhmedovrs.mypetclinic.controllers;
 import com.github.rakhmedovrs.mypetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author RakhmedovRS
@@ -21,16 +23,24 @@ public class OwnerController
 		this.ownerService = ownerService;
 	}
 
-	@RequestMapping(path = {"", "/", "/index", "/index.html"}, method = RequestMethod.GET)
+	@GetMapping(path = {"", "/", "/index", "/index.html"})
 	public String listOwners(Model model)
 	{
 		model.addAttribute("owners", ownerService.findAll());
 		return "owners/index";
 	}
 
-	@RequestMapping(path = {"/find"} , method = RequestMethod.GET)
+	@GetMapping(path = {"/find"})
 	public String findOwners()
 	{
 		return "nonimplemented";
+	}
+
+	@GetMapping("/{ownerID}")
+	public ModelAndView showOwner(@PathVariable String ownerID)
+	{
+		ModelAndView modelAndView = new ModelAndView("owners/ownerDetails");
+		modelAndView.addObject(ownerService.findById(Long.valueOf(ownerID)));
+		return modelAndView;
 	}
 }
