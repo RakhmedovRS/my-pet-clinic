@@ -39,4 +39,13 @@ public class Owner extends Person
 		this.telephone = telephone;
 		this.pets = pets == null ? this.pets : pets;
 	}
+
+	public void addPet(Pet pet)
+	{
+		if (pet.isNew())
+		{
+			pets.add(pet);
+		}
+		pet.setOwner(this);
+	}
 }
