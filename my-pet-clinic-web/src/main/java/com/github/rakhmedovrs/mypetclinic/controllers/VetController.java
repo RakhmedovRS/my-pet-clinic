@@ -1,10 +1,14 @@
 package com.github.rakhmedovrs.mypetclinic.controllers;
 
+import com.github.rakhmedovrs.mypetclinic.model.Vet;
 import com.github.rakhmedovrs.mypetclinic.services.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Set;
 
 /**
  * @author RakhmedovRS
@@ -25,5 +29,11 @@ public class VetController
 	{
 		model.addAttribute("vets", vetService.findAll());
 		return "vets/index";
+	}
+
+	@RequestMapping("/api/vets")
+	public @ResponseBody Set<Vet> GetVetsJson()
+	{
+		return vetService.findAll();
 	}
 }
